@@ -74,8 +74,7 @@ public class GerenciamentoVotacao {
   
   private double calcularPorcentagemVotos(Integer index) {
     double votosCandidato = (double) this.pessoasCandidatas.get(index).getVotos();
-    double percentualVotos = Math.round((votosCandidato / this.totalVotos) * 100);
-    return percentualVotos;
+    return Math.round((votosCandidato / this.totalVotos) * 100);
   }
   
   /**
@@ -92,30 +91,14 @@ public class GerenciamentoVotacao {
       double porcentagem = this.calcularPorcentagemVotos(index);
       System.out.println(
           String.format(
-              "Nome: %nome - %votos votos ( %porcentagem% )",
+              "Nome: %s - %d votos ( %f%% )",
               candidato.getNome(),
               candidato.getVotos(),
               porcentagem
           )
       );
     }
-    System.out.println(String.format("Total de votos: %votos", this.totalVotos));
+    System.out.println(String.format("Total de votos: %d", this.totalVotos));
   }
   
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
