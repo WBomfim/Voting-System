@@ -20,16 +20,17 @@ public class Principal {
     scan = new Scanner(System.in);
     
     do {
-      
+
     } while (opcao != 2);
-    
+
     do {
-      
+
     } while (opcao != 2);
-    
+
     do {
-      
+
     } while (opcao != 3);
+  
   }
   
   private static void menuCadastroCandidato() {
@@ -54,5 +55,29 @@ public class Principal {
     System.out.println("2 - Resultado Parcial");
     System.out.println("3 - Finalizar Votação");
     opcao = scan.nextShort();
+  }
+  
+  private static void cadastrarEleitor() {
+    System.out.println("Entre com o nome da pessoa eleitora:");
+    String nomeEleitor = scan.next();
+    System.out.println("Entre com o cpf da pessoa eleitora:");
+    String cpfEleitor = scan.next();
+    gerenciamentoVotacao.cadastrarPessoaEleitora(nomeEleitor, cpfEleitor);
+  }
+  
+  private static void cadastrarCandidato() {
+    System.out.println("Entre com o nome da pessoa candidata:");
+    String nomeCandidato = scan.next();
+    System.out.println("Entre com o número da pessoa candidata:");
+    int numeroCandidato = scan.nextInt();
+    gerenciamentoVotacao.cadastrarPessoaCandidata(nomeCandidato, numeroCandidato);
+  }
+  
+  private static void votar() {
+    System.out.println("Entre com o cpf da pessoa eleitora:");
+    String cpfEleitor = scan.next();
+    System.out.println("Entre com o número da pessoa candidata:");
+    int numeroCandidato = scan.nextInt();
+    gerenciamentoVotacao.votar(cpfEleitor, numeroCandidato);
   }
 }
