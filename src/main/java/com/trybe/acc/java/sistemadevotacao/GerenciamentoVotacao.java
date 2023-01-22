@@ -67,6 +67,7 @@ public class GerenciamentoVotacao {
       if (pessoa.getNumero().equals(numeroPessoaCandidata)) {
         pessoa.receberVoto();
         this.cpfComputado.add(cpfPessoaEleitora);
+        this.totalVotos += 1;
         return;
       }
     }
@@ -91,7 +92,7 @@ public class GerenciamentoVotacao {
       double porcentagem = this.calcularPorcentagemVotos(index);
       System.out.println(
           String.format(
-              "Nome: %s - %d votos ( %f%% )",
+              "Nome: %s - %d votos ( %.1f%% )",
               candidato.getNome(),
               candidato.getVotos(),
               porcentagem
