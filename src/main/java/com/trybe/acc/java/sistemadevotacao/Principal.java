@@ -1,5 +1,9 @@
 package com.trybe.acc.java.sistemadevotacao;
 
+/**
+ * Class Principal.
+ *
+ */
 public class Principal {
 
   public static void main(String[] args) {

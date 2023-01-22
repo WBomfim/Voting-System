@@ -1,4 +1,5 @@
 package com.trybe.acc.java.sistemadevotacao;
+
 import java.util.ArrayList;
 
 
@@ -30,7 +31,7 @@ public class GerenciamentoVotacao {
     for (PessoaCandidata pessoa : this.pessoasCandidatas) {
       if (pessoa.getNumero().equals(numero)) {
         System.out.println("Número pessoa candidata já utilizado!");
-        break;
+        return;
       }
     }
     PessoaCandidata novaPessoa = new PessoaCandidata(nome, numero);
@@ -38,20 +39,83 @@ public class GerenciamentoVotacao {
   }
   
   /**
-   * Método PessoaEleitora.
+   * Método cadastrarPessoaEleitora.
    * 
    */
   public void cadastrarPessoaEleitora(String nome, String cpf) {
     for (PessoaEleitora pessoa : this.pessoasEleitoras) {
       if (pessoa.getCpf().equals(cpf)) {
         System.out.println("Pessoa eleitora já utilizado!");
-        break;
+        return;
       }
     }
     PessoaEleitora novaPessoa = new PessoaEleitora(nome, cpf);
     this.pessoasEleitoras.add(novaPessoa);
   }
   
+  /**
+   * Método votar.
+   * 
+   */
+  public void votar(String cpfPessoaEleitora, Integer numeroPessoaCandidata) {
+    if (this.cpfComputado.contains(cpfPessoaEleitora)) {
+      System.out.println("Pessoa eleitora já votou!");
+      return;
+    }
+    
+    for (PessoaCandidata pessoa : this.pessoasCandidatas) {
+      if (pessoa.getNumero().equals(numeroPessoaCandidata)) {
+        pessoa.receberVoto();
+        this.cpfComputado.add(cpfPessoaEleitora);
+        return;
+      }
+    }
+  }
+  
+  private double calcularPorcentagemVotos(Integer index) {
+    double votosCandidato = (double) this.pessoasCandidatas.get(index).getVotos();
+    double percentualVotos = Math.round((votosCandidato / this.totalVotos) * 100);
+    return percentualVotos;
+  }
+  
+  /**
+   * Método mostrarResultado.
+   */
+  public void mostrarResultado() {
+    if (this.cpfComputado.size() == 0) {
+      System.out.println("É preciso ter pelo menos um voto para mostrar o resultado.");
+      return;
+    }
+    
+    for (int index = 0; index < this.pessoasCandidatas.size(); index += 1) {
+      PessoaCandidata candidato = this.pessoasCandidatas.get(index);
+      double porcentagem = this.calcularPorcentagemVotos(index);
+      System.out.println(
+          String.format(
+              "Nome: %nome - %votos votos ( %porcentagem% )",
+              candidato.getNome(),
+              candidato.getVotos(),
+              porcentagem
+          )
+      );
+    }
+    System.out.println(String.format("Total de votos: %votos", this.totalVotos));
+  }
+  
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
