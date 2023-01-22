@@ -20,17 +20,39 @@ public class Principal {
     scan = new Scanner(System.in);
     
     do {
-
+      menuCadastroCandidato();
+      
+      if (opcao == 1) {
+        cadastrarCandidato();
+      }
     } while (opcao != 2);
-
+    
+    opcao = 0;
+    
     do {
-
+      menuCadastroEleitor();
+      
+      if (opcao == 1) {
+        cadastrarEleitor();
+      }
     } while (opcao != 2);
-
+    
+    opcao = 0;
+    
     do {
-
+      menuVotacao();
+      
+      if (opcao == 1) {
+        votar();
+      }
+      
+      if (opcao == 2) {
+        gerenciamentoVotacao.mostrarResultado();
+      }
     } while (opcao != 3);
-  
+    
+    gerenciamentoVotacao.mostrarResultado();
+    scan.close();
   }
   
   private static void menuCadastroCandidato() {
